@@ -222,3 +222,18 @@
         flex: 1 1 60%;
     }
 }
+
+
+.news__item--no-image .news__meta {
+    display: none;
+}
+
+.news__item--no-image .news__description {
+    width: 100%;
+    flex: 1 1 100%;
+}
+
+.news__item--no-image .news__description::before {
+    display: none;
+}
+

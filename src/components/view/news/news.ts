@@ -21,20 +21,51 @@ class News {
             const description = clone.querySelector<HTMLElement>('.news__description-content');
             const link = clone.querySelector<HTMLAnchorElement>('.news__read-more a');
 
-            if (idx % 2 !== 0) newsItem?.classList.add('alt');
-
-            if (photo) {
-                photo.style.backgroundImage = `url("${item.urlToImage || 'img/news_placeholder.jpg'}")`;
+            if (idx % 2 !== 0) {
+                newsItem?.classList.add('alt');
             }
 
-            if (author) author.textContent = item.author || item.source.name;
+            const hideImage = (): void => {
+                newsItem?.classList.add('news__item--no-image');
+            };
+
+            if (photo && item.urlToImage) {
+                const image = new Image();
+
+                image.onload = (): void => {
+                    photo.style.backgroundImage = `url("${item.urlToImage}")`;
+                };
+
+                image.onerror = hideImage;
+
+                image.src = item.urlToImage;
+            } else {
+                hideImage();
+            }
+
+            if (author) {
+                author.textContent = item.author || item.source.name;
+            }
+
             if (date) {
                 date.textContent = item.publishedAt.slice(0, 10).split('-').reverse().join('-');
             }
-            if (title) title.textContent = item.title;
-            if (source) source.textContent = item.source.name;
-            if (description) description.textContent = item.description ?? '';
-            if (link) link.href = item.url;
+
+            if (title) {
+                title.textContent = item.title;
+            }
+
+            if (source) {
+                source.textContent = item.source.name;
+            }
+
+            if (description) {
+                description.textContent = item.description ?? '';
+            }
+
+            if (link) {
+                link.href = item.url;
+            }
 
             fragment.append(clone);
         });
