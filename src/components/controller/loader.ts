@@ -38,6 +38,10 @@ class Loader {
     protected makeUrl(options: LoaderOptions, endpoint: ApiEndpoint): string {
         const url = new URL(`mocks/${endpoint}`, this.baseLink);
 
+        if (options.sources) {
+            url.searchParams.set('sources', options.sources);
+        }
+
         return url.toString();
     }
 

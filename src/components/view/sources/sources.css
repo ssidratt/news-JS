@@ -1,14 +1,23 @@
+
 .sources {
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     height: 120px;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
     align-items: center;
     font: 300 1em 'Fira Sans', sans-serif;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #30c5ff #17181c;
 }
 
 .source__item {
+    flex: 0 0 auto;
     background: none;
     border: 2px solid #30c5ff;
     font: inherit;
@@ -31,4 +40,18 @@
 .source__item-name {
     font-weight: 400;
     white-space: nowrap;
+}
+
+@media (max-width: 639px) {
+    .sources {
+        height: 90px;
+        padding: 0 8px;
+        gap: 8px;
+    }
+
+    .source__item {
+        margin: 0;
+        padding: 12px 16px;
+        font-size: 14px;
+    }
 }
