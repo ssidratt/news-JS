@@ -70,3 +70,40 @@ footer .copyright::before {
         min-height: 80px;
     }
 }
+
+
+.footer__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    width: 100%;
+}
+
+.footer__github,
+.footer__school {
+    color: #70d6ff;
+    text-decoration: none;
+}
+
+.footer__github:hover {
+    color: #69db7e;
+}
+
+.footer__year {
+    font-size: 16px;
+    color: #fff;
+}
+
+.footer__school img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 639px) {
+    .footer__content {
+        gap: 16px;
+    }
+}

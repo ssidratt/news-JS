@@ -1,8 +1,8 @@
 import './sources.css';
-import type { Source } from '../../../types/news';
+import type { SourcePreview } from '../../../types/news';
 
 class Sources {
-    public draw(data: Source[]): void {
+    public draw(data: readonly SourcePreview[]): void {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
 
@@ -10,7 +10,7 @@ class Sources {
             return;
         }
 
-        data.forEach((item) => {
+        data.forEach((item: Readonly<SourcePreview>) => {
             const sourceClone = sourceItemTemp.content.cloneNode(true) as DocumentFragment;
 
             const name = sourceClone.querySelector<HTMLElement>('.source__item-name');

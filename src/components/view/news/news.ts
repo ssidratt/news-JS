@@ -1,5 +1,5 @@
 import './news.css';
-import type { Article } from '../../../types/news';
+import type { Article, ArticleUpdate } from '../../../types/news';
 
 class News {
     public draw(data: Article[]): void {
@@ -21,6 +21,12 @@ class News {
             const description = clone.querySelector<HTMLElement>('.news__description-content');
             const link = clone.querySelector<HTMLAnchorElement>('.news__read-more a');
 
+            const optionalData: ArticleUpdate = {
+                author: item.author,
+                description: item.description,
+                urlToImage: item.urlToImage,
+            };
+
             if (idx % 2 !== 0) {
                 newsItem?.classList.add('alt');
             }
@@ -29,22 +35,22 @@ class News {
                 newsItem?.classList.add('news__item--no-image');
             };
 
-            if (photo && item.urlToImage) {
+            if (photo && optionalData.urlToImage) {
                 const image = new Image();
 
                 image.onload = (): void => {
-                    photo.style.backgroundImage = `url("${item.urlToImage}")`;
+                    photo.style.backgroundImage = `url("${optionalData.urlToImage}")`;
                 };
 
                 image.onerror = hideImage;
 
-                image.src = item.urlToImage;
+                image.src = optionalData.urlToImage;
             } else {
                 hideImage();
             }
 
             if (author) {
-                author.textContent = item.author || item.source.name;
+                author.textContent = optionalData.author || item.source.name;
             }
 
             if (date) {
@@ -60,7 +66,7 @@ class News {
             }
 
             if (description) {
-                description.textContent = item.description ?? '';
+                description.textContent = optionalData.description ?? '';
             }
 
             if (link) {

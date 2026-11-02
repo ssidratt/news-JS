@@ -39,6 +39,12 @@ export type ApiResponse = SourcesResponse | NewsResponse;
 
 export type ApiCallback<T> = (data: T) => void;
 
+export type SourcePreview = Pick<Source, 'id' | 'name'>;
+
+export type ArticleUpdate = Partial<Article>;
+
+export type ReadonlySource = Readonly<Source>;
+
 export enum ApiEndpoint {
     Sources = 'sources',
     Everything = 'everything',
